@@ -12,7 +12,7 @@ body{
     text-align:center;
     height:100vh;
     overflow:hidden;
-    background:linear-gradient(135deg,#ff6a88,#ff99ac);
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
     color:white;
 }
 
@@ -23,9 +23,9 @@ h1{
 
 #message{
     margin:30px;
-    font-size:30px;
+    font-size:28px;
     font-weight:bold;
-    min-height:100px;
+    min-height:120px;
 }
 
 button{
@@ -78,8 +78,8 @@ button{
 
 <body>
 
-<h1>Anu ❤️<br>Will You Be Mine?</h1>
-<div id="message">Try pressing NO if you dare 😏</div>
+<h1>Anu ❤️<br>Please Say Yes 🥺</h1>
+<div id="message">Don’t press NO… please 😔</div>
 
 <button id="yes">YES 💖</button>
 <button id="no">NO 🙈</button>
@@ -87,59 +87,116 @@ button{
 <div id="result">
     <h2 style="font-size:36px;">You Said YES ❤️</h2>
     <img src="https://media.tenor.com/W1bK5qU6X0AAAAAC/cute-love.gif">
-    <p style="font-size:28px;">Now you’re officially mine 😌💘</p>
+    <p style="font-size:28px;">You just made me the happiest person 🥺💘</p>
 </div>
 
 <script>
 let moveCount = 0;
 const maxMoves = 100;
 
-/* Flirting pairs */
-const flirtEnglish = [
-"I’m not going anywhere… except into your heart 😏",
-"If I look at you longer… it’s because I like what I see 😌",
-"I don’t chase… but for you I might run 😉",
-"You’re not just cute… you’re addictive 😍",
-"If I whisper something… it’ll be about us 😏",
-"You pretend not to care… but I see that spark 😉",
-"I could tease you all day and still not get bored 😄",
-"You smile like you already know I’m falling 😌",
-"I don’t want perfect… I want you 💕",
-"If I hug you once… you won’t forget it 😏",
-"You’re the kind of trouble I wouldn’t mind 😌",
-"I wasn’t planning to fall… but then you smiled 😍",
-"If I sit closer… don’t move away 😜",
-"I don’t need permission to like you this much 😏",
-"You walk away… but you look back 😉"
-];
+const messages = [
 
-const flirtTelugu = [
-"నీ హృదయంలోకి మాత్రమే వస్తాను… పారిపోను 😄",
-"కొంచెం ఎక్కువగా చూస్తే… నచ్చినందుకే చూస్తున్నా 😌",
-"ఎవరినీ వెంబడించను… కానీ నీ కోసం పరుగెడతా 😜",
-"నువ్వు క్యూట్ మాత్రమే కాదు… అలవాటు అవుతావ్ 😍",
-"చెవిలో చెప్పేది… మనిద్దరి గురించే ఉంటుంది 😏",
-"అంతగా పట్టించుకోనట్టు నటిస్తున్నావ్… కానీ స్పార్క్ కనిపిస్తోంది 😄",
-"రోజంతా ఆటపెట్టినా కూడా బోర్ కొట్టదు 😜",
-"నేను పడిపోతున్నానని తెలిసినట్టు నవ్వుతున్నావ్ 😌",
-"పర్ఫెక్ట్ అవసరం లేదు… నువ్వే కావాలి ❤️",
-"ఒక్కసారి హగ్ చేస్తే… మర్చిపోలేవ్ 😏",
-"నువ్వే నాకు ఇష్టమైన సమస్య 😄",
-"పడిపోవాలని అనుకోలేదు… కానీ నువ్వే కారణం 😍",
-"కొంచెం దగ్గర కూర్చుంటే… దూరం కూర్చోకు 😜",
-"నిన్ను ఇంతగా ఇష్టపడటానికి అనుమతి అవసరం లేదు 😏",
-"నడిచి వెళ్తావ్… కానీ తిరిగి చూస్తావ్ 😌"
-];
+"Please don’t say no… I really mean this 🥺",
+"Don’t break my little hopeful heart 😔",
+"I promise I’ll make you smile every day ❤️",
+"Just one YES… that’s all I’m asking 😌",
+"I’m not joking… I genuinely like you 💕",
+"Please don’t run away from me 😞",
+"I’ll wait… but please don’t say no.",
+"You mean more to me than you think 😔",
+"I’m serious this time… don’t press it 🥺",
+"Give me one chance… just one ❤️",
+"I don’t want anyone else’s answer… only yours.",
+"If you say yes, I’ll treat you like my world 💖",
+"I’m not perfect… but I’ll try for you.",
+"Don’t make me miss you before I even have you 😔",
+"I promise to protect your smile.",
+"Please don’t test my heart like this 🥺",
+"I really really like you.",
+"Say yes and let’s make memories.",
+"I’ll hold your hand through everything.",
+"I’m not playing… I’m feeling.",
+"Don’t let this be a ‘what if’ moment.",
+"You matter to me more than this button.",
+"I don’t want to lose before I start.",
+"I’ll never make you regret saying yes.",
+"You won’t regret choosing me.",
+"Please don’t let this be goodbye.",
+"I just want a chance to care for you.",
+"I’m here because you matter.",
+"My heart is literally waiting right now.",
+"Don’t press no… please.",
+"You’re not just someone to me.",
+"I’ll be patient, but I hope it’s yes.",
+"You make my days better already.",
+"I’m not asking for the world… just you.",
+"I’ll respect you always.",
+"I want to make you proud of choosing me.",
+"I’m not scared of effort.",
+"I’m scared of losing you.",
+"Please choose us.",
+"You feel right to me.",
+"I promise I’ll listen to you.",
+"I’ll support your dreams.",
+"I want to grow with you.",
+"I’ll always show up for you.",
+"I’ll choose you even on hard days.",
+"Don’t let fear say no.",
+"I’m here with a genuine heart.",
+"You deserve someone who tries.",
+"Let me be that someone.",
+"I’ll care for you softly.",
+"You won’t have to fight alone.",
+"I’ll stand beside you.",
+"I don’t want to pressure you… just hope.",
+"I really believe in us.",
+"I’ll never stop respecting you.",
+"You’re special to me.",
+"I’m not pretending.",
+"My feelings are real.",
+"Don’t ignore what you feel.",
+"I’m not here to hurt you.",
+"I want to protect what we could have.",
+"I’ll always value you.",
+"I won’t take you for granted.",
+"I’ll show up every single time.",
+"I want to make you feel safe.",
+"You’re not just an option.",
+"I see something beautiful here.",
+"I don’t want to miss this chance.",
+"You make my heart softer.",
+"I’ll choose kindness with you.",
+"I want to build something real.",
+"I’m not playing games.",
+"I’m serious about you.",
+"I don’t want temporary.",
+"I want something meaningful.",
+"You make me feel calm.",
+"I’ll hold your heart carefully.",
+"I’m not perfect… but I’m sincere.",
+"I’ll always be honest with you.",
+"I won’t disappear.",
+"I’ll stay even when it’s hard.",
+"I believe you’re worth it.",
+"I want to be yours.",
+"I’ll put effort every day.",
+"You deserve someone consistent.",
+"I can be that.",
+"I’ll cherish you.",
+"I’ll appreciate you.",
+"I want to make you happy.",
+"I’m not asking for everything… just a start.",
+"Please don’t close this door.",
+"Let’s give this a chance.",
+"I’ll walk with you, not ahead of you.",
+"I’ll understand your silence.",
+"I’ll celebrate your wins.",
+"I’ll comfort your lows.",
+"I’ll love you gently.",
+"I’m here with a hopeful heart.",
+"Please say yes 🥺❤️"
 
-/* Generate 200 alternating lines */
-let messages = [];
-for(let i=0; i<200; i++){
-    if(i % 2 === 0){
-        messages.push(flirtEnglish[i % flirtEnglish.length]);
-    } else {
-        messages.push(flirtTelugu[i % flirtTelugu.length]);
-    }
-}
+];
 
 function moveNoButton(){
     if(moveCount < maxMoves){

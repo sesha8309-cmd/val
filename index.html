@@ -22,10 +22,10 @@ h1{
 }
 
 #message{
-    margin:25px;
-    font-size:28px;
+    margin:30px;
+    font-size:30px;
     font-weight:bold;
-    min-height:90px;
+    min-height:100px;
 }
 
 button{
@@ -38,7 +38,6 @@ button{
     font-weight:bold;
     cursor:pointer;
     box-shadow:0 8px 25px rgba(0,0,0,0.3);
-    transition:0.2s;
 }
 
 #yes{
@@ -79,71 +78,67 @@ button{
 
 <body>
 
-<h1>Anu ❤️<br>Will You Be My Valentine?</h1>
-<div id="message">Think carefully 😌</div>
+<h1>Anu ❤️<br>Will You Be Mine?</h1>
+<div id="message">Try pressing NO if you dare 😏</div>
 
 <button id="yes">YES 💖</button>
 <button id="no">NO 🙈</button>
 
 <div id="result">
-    <h2 style="font-size:34px;">You Said YES ❤️</h2>
+    <h2 style="font-size:36px;">You Said YES ❤️</h2>
     <img src="https://media.tenor.com/W1bK5qU6X0AAAAAC/cute-love.gif">
-    <p style="font-size:28px;">I Love You So Much Anu 😘</p>
+    <p style="font-size:28px;">Now you’re officially mine 😌💘</p>
 </div>
 
 <script>
 let moveCount = 0;
 const maxMoves = 100;
 
-const messages = [
-"Are you sure about NO? 😜",
-"నో అంటే నిజంగానే అనుకుంటున్నావా? 😏",
-"Your heart says YES ❤️",
-"నీ హృదయం YES అంటోంది కదా 😍",
-"Wrong button madam 😉",
-"తప్పు బటన్ నొక్కుతున్నావ్ 😆",
-"I'll keep running!",
-"నన్ను పట్టుకోగలవా చూద్దాం 😄",
-"Press YES and make me happiest!",
-"YES నొక్కితే నా రోజు పూర్తవుతుంది ❤️",
-
-// Instead of manually writing 200 static lines,
-// we'll dynamically generate up to 200 romantic mixed lines.
+/* Flirting pairs */
+const flirtEnglish = [
+"I’m not going anywhere… except into your heart 😏",
+"If I look at you longer… it’s because I like what I see 😌",
+"I don’t chase… but for you I might run 😉",
+"You’re not just cute… you’re addictive 😍",
+"If I whisper something… it’ll be about us 😏",
+"You pretend not to care… but I see that spark 😉",
+"I could tease you all day and still not get bored 😄",
+"You smile like you already know I’m falling 😌",
+"I don’t want perfect… I want you 💕",
+"If I hug you once… you won’t forget it 😏",
+"You’re the kind of trouble I wouldn’t mind 😌",
+"I wasn’t planning to fall… but then you smiled 😍",
+"If I sit closer… don’t move away 😜",
+"I don’t need permission to like you this much 😏",
+"You walk away… but you look back 😉"
 ];
 
-const englishLines = [
-"You can't escape love 😄",
-"Destiny wants YES!",
-"You look cute chasing NO 😂",
-"Stop running from romance ❤️",
-"Green button looks better 😉",
-"Your smile needs a YES!",
-"You are my favorite person 💕",
-"Even stars support YES ✨",
-"I think you love me secretly 😌",
-"Say YES and hug me soon 🤗"
+const flirtTelugu = [
+"నీ హృదయంలోకి మాత్రమే వస్తాను… పారిపోను 😄",
+"కొంచెం ఎక్కువగా చూస్తే… నచ్చినందుకే చూస్తున్నా 😌",
+"ఎవరినీ వెంబడించను… కానీ నీ కోసం పరుగెడతా 😜",
+"నువ్వు క్యూట్ మాత్రమే కాదు… అలవాటు అవుతావ్ 😍",
+"చెవిలో చెప్పేది… మనిద్దరి గురించే ఉంటుంది 😏",
+"అంతగా పట్టించుకోనట్టు నటిస్తున్నావ్… కానీ స్పార్క్ కనిపిస్తోంది 😄",
+"రోజంతా ఆటపెట్టినా కూడా బోర్ కొట్టదు 😜",
+"నేను పడిపోతున్నానని తెలిసినట్టు నవ్వుతున్నావ్ 😌",
+"పర్ఫెక్ట్ అవసరం లేదు… నువ్వే కావాలి ❤️",
+"ఒక్కసారి హగ్ చేస్తే… మర్చిపోలేవ్ 😏",
+"నువ్వే నాకు ఇష్టమైన సమస్య 😄",
+"పడిపోవాలని అనుకోలేదు… కానీ నువ్వే కారణం 😍",
+"కొంచెం దగ్గర కూర్చుంటే… దూరం కూర్చోకు 😜",
+"నిన్ను ఇంతగా ఇష్టపడటానికి అనుమతి అవసరం లేదు 😏",
+"నడిచి వెళ్తావ్… కానీ తిరిగి చూస్తావ్ 😌"
 ];
 
-const teluguLines = [
-"ప్రేమ నుండి పారిపోవద్దు 😄",
-"విధి YES కోరుకుంటోంది ❤️",
-"నో వెంబడించడం cute గా ఉంది 😂",
-"ప్రేమకు ఓటమి లేదు 💕",
-"పచ్చ బటన్ బాగుంది కదా 😉",
-"నీ నవ్వు YES కోరుకుంటోంది 😍",
-"నువ్వు నా ఫేవరెట్ వ్యక్తి 💖",
-"నక్షత్రాలు కూడా YES అంటున్నాయి ✨",
-"నిజానికి నన్ను ఇష్టపడుతున్నావ్ కదా 😌",
-"YES అంటే హగ్గు ఫిక్స్ 🤗"
-];
-
-// Auto generate up to 200 messages
-while(messages.length < 200){
-    messages.push(
-        messages.length % 2 === 0
-        ? englishLines[Math.floor(Math.random()*englishLines.length)]
-        : teluguLines[Math.floor(Math.random()*teluguLines.length)]
-    );
+/* Generate 200 alternating lines */
+let messages = [];
+for(let i=0; i<200; i++){
+    if(i % 2 === 0){
+        messages.push(flirtEnglish[i % flirtEnglish.length]);
+    } else {
+        messages.push(flirtTelugu[i % flirtTelugu.length]);
+    }
 }
 
 function moveNoButton(){
@@ -156,9 +151,7 @@ function moveNoButton(){
         btn.style.left = x + "px";
         btn.style.top = y + "px";
 
-        document.getElementById("message").innerText =
-            messages[moveCount];
-
+        document.getElementById("message").innerText = messages[moveCount];
         moveCount++;
     }
 }

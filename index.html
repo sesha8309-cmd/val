@@ -2,208 +2,194 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Anu ❤️</title>
+<title>For Anu ❤️</title>
 
 <style>
 body{
     margin:0;
     padding:0;
     font-family:'Segoe UI',sans-serif;
-    text-align:center;
-    height:100vh;
-    overflow:hidden;
     background:linear-gradient(135deg,#ff758c,#ff7eb3);
     color:white;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
 }
 
 h1{
-    margin-top:70px;
-    font-size:38px;
+    font-size:28px;
+    margin-bottom:5px;
+}
+
+h2{
+    font-size:24px;
+    margin-top:0;
 }
 
 #message{
-    margin:30px;
-    font-size:30px;
-    font-weight:bold;
-    min-height:110px;
+    margin:20px;
+    font-size:20px;
+    min-height:60px;
+}
+
+.buttons{
+    margin-top:20px;
+    position:relative;
+    width:100%;
+    height:100px;
 }
 
 button{
-    width:220px;
-    height:80px;
-    font-size:28px;
+    width:110px;
+    height:42px;
+    font-size:15px;
     border:none;
-    border-radius:50px;
-    position:absolute;
+    border-radius:25px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    box-shadow:0 6px 12px rgba(0,0,0,0.3);
 }
 
 #yes{
     background:#2ecc71;
-    left:10%;
-    bottom:100px;
 }
 
 #no{
     background:#e74c3c;
-    right:10%;
-    bottom:100px;
+    position:absolute;
 }
 
 #result{
     display:none;
-    margin-top:20px;
+    animation:fadeIn 1s ease-in-out;
 }
 
 #result img{
-    width:320px;
-    border-radius:20px;
-    margin-top:20px;
+    width:200px;
+    margin-top:15px;
+    border-radius:15px;
+}
+
+#result p{
+    font-size:17px;
+    margin:15px;
+    line-height:1.5;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.9);}
+    to{opacity:1; transform:scale(1);}
 }
 
 .heart{
     position:absolute;
-    font-size:30px;
-    animation:float 3s linear infinite;
+    font-size:18px;
+    animation:float 4s linear infinite;
 }
 
 @keyframes float{
     0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-300px);opacity:0;}
+    100%{transform:translateY(-250px);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<h1>Anu ❤️<br>Please Say Yes 🥺</h1>
-<div id="message">Don’t press NO… please 🥺</div>
+<h1>Anu ❤️</h1>
+<h2>Will You Be My Valentine? 🥺</h2>
 
-<button id="yes">YES 💖</button>
-<button id="no">NO 🙈</button>
+<div id="message">Please don’t press NO… 🥺</div>
+
+<div class="buttons">
+    <button id="yes">YES 💖</button>
+    <button id="no">NO 🙈</button>
+</div>
 
 <div id="result">
-    <h2 style="font-size:36px;">You Said YES ❤️</h2>
+    <h2>You Said YES ❤️</h2>
     <img src="https://media.tenor.com/W1bK5qU6X0AAAAAC/cute-love.gif">
-    <p style="font-size:28px;">You’re my favorite person 😌💘</p>
+    <p>
+        I promise to protect your smile,<br>
+        care for your heart,<br>
+        and choose you every single day.<br><br>
+        You’re my favorite person 💕
+    </p>
 </div>
 
 <script>
 let moveCount = 0;
 const maxMoves = 100;
 
+/* 100 Short Lines */
 const messages = [
-"Please don’t press NO 🥺",
-"You look insanely beautiful right now 😍",
-"Just one YES please ❤️",
-"That smile of yours is dangerous 😌",
-"Don’t break my tiny heart 😔",
-"You’re glowing today ✨",
-"I’m serious about you 🥺",
-"Your eyes are killing me softly 😍",
-"Give me one chance ❤️",
-"You’re too cute to say NO 😌",
-"Please choose me 🥺",
-"Your laugh is my weakness 😍",
-"I really like you ❤️",
-"You look unreal today 😌",
-"Don’t push me away 🥺",
-"You’re honestly breathtaking 😍",
-"Say YES na ❤️",
-"You’re the prettiest girl here 😌",
-"I promise I’ll care for you 🥺",
-"Your vibe is magical ✨",
-"Please don’t reject me 😔",
-"You look soft and adorable 😍",
-"I’ll treat you special ❤️",
-"You shine without trying 😌",
-"Just say YES once 🥺",
-"You’re effortlessly beautiful 😍",
-"I’m not playing around ❤️",
-"Your face makes my day 😌",
-"Don’t make me sad 🥺",
-"You look perfect right now 😍",
-"I’m waiting for your YES ❤️",
-"You’re literally glowing 😌",
-"Please think again 🥺",
-"You’re too pretty to be stubborn 😍",
-"I really want this ❤️",
-"Your smile is my favorite 😌",
-"Don’t press it please 🥺",
-"You look like a dream 😍",
-"I’ll be good to you ❤️",
-"You’re way too charming 😌",
-"Just say yes baby 🥺",
-"Your beauty distracts me 😍",
-"I’ll make you proud ❤️",
-"You’re stunning without effort 😌",
-"Please don’t say no 🥺",
-"You’re dangerously cute 😍",
-"I’m not giving up ❤️",
-"You look amazing always 😌",
-"Choose me please 🥺",
-"Your glow is unreal 😍",
-"I’ll cherish you ❤️",
-"You’re honestly mesmerizing 😌",
-"Please don’t run away 🥺",
-"You’re too pretty to reject me 😍",
-"I mean it ❤️",
-"Your smile melts me 😌",
-"Say YES please 🥺",
-"You’re a literal angel 😍",
-"I’m serious about us ❤️",
-"You look perfect even now 😌",
-"Don’t hurt my feelings 🥺",
-"You’re the definition of beautiful 😍",
-"I’m waiting ❤️",
-"You’re glowing differently today 😌",
-"Give me hope 🥺",
-"You’re effortlessly gorgeous 😍",
-"I care about you ❤️",
-"You look unreal honestly 😌",
-"Just say yes please 🥺",
-"You’re too adorable 😍",
-"I really want you ❤️",
-"You shine naturally 😌",
-"Don’t press that 🥺",
-"You’re stunning beyond words 😍",
-"I’ll stay for you ❤️",
-"You look magical 😌",
-"Please think once more 🥺",
-"You’re way too pretty 😍",
-"I’m right here ❤️",
-"You glow without trying 😌",
-"Just one YES 🥺",
-"You’re breathtaking always 😍",
-"Please don’t break me 🥺",
-"You’re the prettiest ever 😌",
-"I’m choosing you ❤️",
-"You look so charming 😍",
-"Please don’t reject 🥺",
-"You’re honestly flawless 😌",
-"I want you ❤️",
-"You’re too beautiful for this 😍",
-"Say YES please 🥺",
-"You’re glowing like crazy ✨",
-"I care deeply ❤️",
-"You’re my favorite view 😍",
-"Don’t say no 🥺",
-"You look perfect in every way 😌"
+"Please don’t press NO 🥺","You look beautiful right now 😍",
+"Just say YES once ❤️","Your smile is dangerous 😌",
+"Don’t break my tiny heart 😔","You’re glowing today ✨",
+"I really like you 🥺","You’re too cute to say NO 😍",
+"Please choose me ❤️","You’re honestly stunning 😌",
+"Don’t reject me 🥺","Your eyes are unreal 😍",
+"Give me one chance ❤️","You shine naturally ✨",
+"Please think again 🥺","You look like a dream 😍",
+"I’m serious about this ❤️","You’re way too charming 😌",
+"Just trust me once 🥺","You glow differently ✨",
+"Don’t say no please 🥺","You’re dangerously pretty 😍",
+"Please be mine ❤️","Your beauty distracts me 😌",
+"I care about you 🥺","You sparkle naturally ✨",
+"Give me hope ❤️","You’re glowing softly 😍",
+"Don’t ignore me 🥺","You’re effortlessly gorgeous 😌",
+"Please consider me ❤️","Your smile melts me 😍",
+"I’m right here 🥺","You’re too adorable 😌",
+"Please choose us ❤️","You shine brighter today ✨",
+"I’m not joking 🥺","You look magical 😍",
+"Please don’t hurt me ❤️","You’re insanely charming 😌",
+"Say yes please 🥺","You glow without trying ✨",
+"I’m waiting for you ❤️","You’re breathtaking 😍",
+"Please don’t push me away 🥺","You’re honestly flawless 😌",
+"I really want you ❤️","You shine beautifully ✨",
+"Just one YES 🥺","You’re stunning always 😍",
+"Please don’t close this 🥺","You look perfect today 😌",
+"I’m choosing you ❤️","You glow like sunrise ✨",
+"Please give me a chance 🥺","You’re absolutely radiant 😍",
+"Don’t leave me hanging 🥺","You sparkle softly 😌",
+"I need your YES ❤️","You’re beautifully different ✨",
+"Please understand me 🥺","You look unreal 😍",
+"Say YES baby ❤️","You shine naturally 😌",
+"Don’t deny me 🥺","You glow like magic ✨",
+"I’m serious about us ❤️","You’re glowing right now 😍",
+"Please think once more 🥺","You’re charming always 😌",
+"I’m not giving up ❤️","You shine like stars ✨",
+"Please say YES 🥺","You’re effortlessly pretty 😍",
+"I want only you ❤️","You glow beautifully 😌",
+"Don’t press NO 🥺","You look incredible 😍",
+"Just choose me ❤️","You shine every time ✨",
+"Please don’t walk away 🥺","You’re my favorite smile 😌",
+"Give me your YES ❤️","You glow perfectly 😍",
+"Please say it once 🥺","You’re honestly amazing 😌"
 ];
+
+/* Shuffle on refresh */
+function shuffle(array){
+    for(let i=array.length-1;i>0;i--){
+        let j=Math.floor(Math.random()*(i+1));
+        [array[i],array[j]]=[array[j],array[i]];
+    }
+}
+shuffle(messages);
 
 function moveNoButton(){
     if(moveCount < maxMoves){
         const btn = document.getElementById("no");
-
-        let x = Math.random() * (window.innerWidth - 250);
-        let y = Math.random() * (window.innerHeight - 250);
-
+        let x = Math.random() * (window.innerWidth - 120);
+        let y = Math.random() * (window.innerHeight - 120);
         btn.style.left = x + "px";
         btn.style.top = y + "px";
-
-        document.getElementById("message").innerText = messages[moveCount];
+        document.getElementById("message").innerText =
+            messages[moveCount % messages.length];
         moveCount++;
     }
 }
@@ -212,19 +198,18 @@ document.getElementById("no").addEventListener("touchstart", moveNoButton);
 document.getElementById("no").addEventListener("mouseover", moveNoButton);
 
 document.getElementById("yes").addEventListener("click", function(){
-    document.getElementById("yes").style.display="none";
-    document.getElementById("no").style.display="none";
+    document.querySelector(".buttons").style.display="none";
     document.getElementById("message").style.display="none";
     document.getElementById("result").style.display="block";
 
     setInterval(function(){
-        const heart = document.createElement("div");
+        const heart=document.createElement("div");
         heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random()*window.innerWidth + "px";
-        heart.style.top = window.innerHeight + "px";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*window.innerWidth+"px";
+        heart.style.top=window.innerHeight+"px";
         document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),3000);
+        setTimeout(()=>heart.remove(),4000);
     },300);
 });
 </script>

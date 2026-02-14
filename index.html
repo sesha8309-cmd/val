@@ -20,15 +20,8 @@ body{
     overflow:hidden;
 }
 
-h1{
-    font-size:28px;
-    margin-bottom:5px;
-}
-
-h2{
-    font-size:24px;
-    margin-top:0;
-}
+h1{ font-size:28px; margin-bottom:5px; }
+h2{ font-size:22px; margin-top:0; }
 
 #message{
     margin:20px;
@@ -36,6 +29,7 @@ h2{
     min-height:60px;
 }
 
+/* Buttons */
 .buttons{
     margin-top:20px;
     position:relative;
@@ -54,15 +48,13 @@ button{
     box-shadow:0 6px 12px rgba(0,0,0,0.3);
 }
 
-#yes{
-    background:#2ecc71;
-}
-
+#yes{ background:#2ecc71; }
 #no{
     background:#e74c3c;
     position:absolute;
 }
 
+/* Result */
 #result{
     display:none;
     animation:fadeIn 1s ease-in-out;
@@ -116,8 +108,8 @@ button{
     <p>
         I promise to protect your smile,<br>
         care for your heart,<br>
-        and choose you every single day.<br><br>
-        You’re my favorite person 💕
+        and choose you every day.<br><br>
+        You are my favorite person 💕
     </p>
 </div>
 
@@ -125,7 +117,7 @@ button{
 let moveCount = 0;
 const maxMoves = 100;
 
-/* 100 Short Lines */
+/* 100 short lines */
 const messages = [
 "Please don’t press NO 🥺","You look beautiful right now 😍",
 "Just say YES once ❤️","Your smile is dangerous 😌",
@@ -137,42 +129,39 @@ const messages = [
 "Please think again 🥺","You look like a dream 😍",
 "I’m serious about this ❤️","You’re way too charming 😌",
 "Just trust me once 🥺","You glow differently ✨",
-"Don’t say no please 🥺","You’re dangerously pretty 😍",
-"Please be mine ❤️","Your beauty distracts me 😌",
-"I care about you 🥺","You sparkle naturally ✨",
-"Give me hope ❤️","You’re glowing softly 😍",
-"Don’t ignore me 🥺","You’re effortlessly gorgeous 😌",
-"Please consider me ❤️","Your smile melts me 😍",
-"I’m right here 🥺","You’re too adorable 😌",
-"Please choose us ❤️","You shine brighter today ✨",
-"I’m not joking 🥺","You look magical 😍",
-"Please don’t hurt me ❤️","You’re insanely charming 😌",
-"Say yes please 🥺","You glow without trying ✨",
-"I’m waiting for you ❤️","You’re breathtaking 😍",
-"Please don’t push me away 🥺","You’re honestly flawless 😌",
-"I really want you ❤️","You shine beautifully ✨",
-"Just one YES 🥺","You’re stunning always 😍",
-"Please don’t close this 🥺","You look perfect today 😌",
-"I’m choosing you ❤️","You glow like sunrise ✨",
-"Please give me a chance 🥺","You’re absolutely radiant 😍",
-"Don’t leave me hanging 🥺","You sparkle softly 😌",
-"I need your YES ❤️","You’re beautifully different ✨",
-"Please understand me 🥺","You look unreal 😍",
-"Say YES baby ❤️","You shine naturally 😌",
-"Don’t deny me 🥺","You glow like magic ✨",
-"I’m serious about us ❤️","You’re glowing right now 😍",
-"Please think once more 🥺","You’re charming always 😌",
-"I’m not giving up ❤️","You shine like stars ✨",
-"Please say YES 🥺","You’re effortlessly pretty 😍",
-"I want only you ❤️","You glow beautifully 😌",
-"Don’t press NO 🥺","You look incredible 😍",
-"Just choose me ❤️","You shine every time ✨",
-"Please don’t walk away 🥺","You’re my favorite smile 😌",
-"Give me your YES ❤️","You glow perfectly 😍",
-"Please say it once 🥺","You’re honestly amazing 😌"
+"Please don’t ignore me 🥺","You sparkle naturally 😍",
+"I care about you ❤️","You glow softly ✨",
+"Say YES please 🥺","You’re dangerously pretty 😍",
+"Don’t push me away 🥺","You look magical 😌",
+"Please consider me ❤️","You shine beautifully ✨",
+"I really want you 🥺","You’re breathtaking 😍",
+"Give me hope ❤️","You glow perfectly ✨",
+"Don’t deny me 🥺","You’re effortlessly gorgeous 😍",
+"Please believe me ❤️","You shine brighter today ✨",
+"I’m right here 🥺","You look incredible 😍",
+"Just choose me ❤️","You glow like sunrise ✨",
+"Please don’t walk away 🥺","You’re absolutely radiant 😍",
+"I’m waiting for you ❤️","You sparkle softly ✨",
+"Please don’t say no 🥺","You’re honestly flawless 😍",
+"I want only you ❤️","You shine naturally 😌",
+"Please think once more 🥺","You glow beautifully ✨",
+"Don’t close this door 🥺","You look perfect today 😍",
+"I need your YES ❤️","You glow like magic ✨",
+"Please give me a chance 🥺","You’re insanely charming 😍",
+"Say YES once ❤️","You shine every time ✨",
+"Don’t leave me hanging 🥺","You glow softly 😍",
+"I’m serious about us ❤️","You sparkle brightly ✨",
+"Please choose me 🥺","You’re too adorable 😍",
+"I’m not joking ❤️","You glow differently ✨",
+"Please don’t hurt me 🥺","You’re stunning always 😍",
+"Just one YES ❤️","You shine naturally 😌",
+"Please trust me 🥺","You glow beautifully ✨",
+"I’m choosing you ❤️","You’re my favorite smile 😍",
+"Please say it once 🥺","You shine perfectly ✨",
+"Don’t press NO 🥺","You glow amazingly 😍"
 ];
 
-/* Shuffle on refresh */
+/* Shuffle */
 function shuffle(array){
     for(let i=array.length-1;i>0;i--){
         let j=Math.floor(Math.random()*(i+1));
@@ -184,18 +173,28 @@ shuffle(messages);
 function moveNoButton(){
     if(moveCount < maxMoves){
         const btn = document.getElementById("no");
-        let x = Math.random() * (window.innerWidth - 120);
-        let y = Math.random() * (window.innerHeight - 120);
+
+        const btnWidth = btn.offsetWidth;
+        const btnHeight = btn.offsetHeight;
+
+        const maxX = window.innerWidth - btnWidth - 20;
+        const maxY = window.innerHeight - btnHeight - 20;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
         btn.style.left = x + "px";
         btn.style.top = y + "px";
+
         document.getElementById("message").innerText =
             messages[moveCount % messages.length];
+
         moveCount++;
     }
 }
 
+document.getElementById("no").addEventListener("click", moveNoButton);
 document.getElementById("no").addEventListener("touchstart", moveNoButton);
-document.getElementById("no").addEventListener("mouseover", moveNoButton);
 
 document.getElementById("yes").addEventListener("click", function(){
     document.querySelector(".buttons").style.display="none";

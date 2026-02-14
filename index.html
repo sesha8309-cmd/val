@@ -20,38 +20,47 @@ body{
     overflow:hidden;
 }
 
-h1{ font-size:28px; margin-bottom:5px; }
-h2{ font-size:22px; margin-top:0; }
+h1{font-size:28px;margin-bottom:5px;}
+h2{font-size:22px;margin-top:0;}
 
 #message{
-    margin:20px;
     font-size:20px;
+    margin:20px;
     min-height:60px;
 }
 
-/* Buttons */
-.buttons{
-    margin-top:20px;
+/* Button Area */
+.button-area{
     position:relative;
     width:100%;
-    height:100px;
+    height:200px;
+    margin-top:20px;
 }
 
 button{
     width:110px;
-    height:42px;
+    height:45px;
     font-size:15px;
     border:none;
     border-radius:25px;
     font-weight:bold;
     cursor:pointer;
-    box-shadow:0 6px 12px rgba(0,0,0,0.3);
+    box-shadow:0 6px 15px rgba(0,0,0,0.3);
 }
 
-#yes{ background:#2ecc71; }
+#yes{
+    background:#2ecc71;
+    position:absolute;
+    left:20%;
+    top:70px;
+}
+
 #no{
     background:#e74c3c;
     position:absolute;
+    left:60%;
+    top:70px;
+    transition:0.25s ease;
 }
 
 /* Result */
@@ -62,8 +71,8 @@ button{
 
 #result img{
     width:200px;
-    margin-top:15px;
     border-radius:15px;
+    margin-top:15px;
 }
 
 #result p{
@@ -97,7 +106,7 @@ button{
 
 <div id="message">Please don’t press NO… 🥺</div>
 
-<div class="buttons">
+<div class="button-area" id="area">
     <button id="yes">YES 💖</button>
     <button id="no">NO 🙈</button>
 </div>
@@ -106,14 +115,15 @@ button{
     <h2>You Said YES ❤️</h2>
     <img src="https://media.tenor.com/W1bK5qU6X0AAAAAC/cute-love.gif">
     <p>
-        I promise to protect your smile,<br>
+        From today, I promise to protect your smile,<br>
         care for your heart,<br>
-        and choose you every day.<br><br>
-        You are my favorite person 💕
+        and choose you every single day.<br><br>
+        You’re my favorite person 💕
     </p>
 </div>
 
 <script>
+
 let moveCount = 0;
 const maxMoves = 100;
 
@@ -170,21 +180,24 @@ function shuffle(array){
 }
 shuffle(messages);
 
+const area = document.getElementById("area");
+const noBtn = document.getElementById("no");
+
 function moveNoButton(){
     if(moveCount < maxMoves){
-        const btn = document.getElementById("no");
 
-        const btnWidth = btn.offsetWidth;
-        const btnHeight = btn.offsetHeight;
+        const areaRect = area.getBoundingClientRect();
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
 
-        const maxX = window.innerWidth - btnWidth - 20;
-        const maxY = window.innerHeight - btnHeight - 20;
+        const maxX = areaRect.width - btnWidth;
+        const maxY = areaRect.height - btnHeight;
 
         const x = Math.random() * maxX;
         const y = Math.random() * maxY;
 
-        btn.style.left = x + "px";
-        btn.style.top = y + "px";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
 
         document.getElementById("message").innerText =
             messages[moveCount % messages.length];
@@ -193,11 +206,11 @@ function moveNoButton(){
     }
 }
 
-document.getElementById("no").addEventListener("click", moveNoButton);
-document.getElementById("no").addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
 
 document.getElementById("yes").addEventListener("click", function(){
-    document.querySelector(".buttons").style.display="none";
+    area.style.display="none";
     document.getElementById("message").style.display="none";
     document.getElementById("result").style.display="block";
 
@@ -211,6 +224,7 @@ document.getElementById("yes").addEventListener("click", function(){
         setTimeout(()=>heart.remove(),4000);
     },300);
 });
+
 </script>
 
 </body>
